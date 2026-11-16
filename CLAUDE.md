@@ -8,9 +8,6 @@ Small Express REST API for users and health checks, built for a Claude Code cour
 - `npm test`: run the test suite.
 - `npm run lint`: check code style.
 
-On Windows PowerShell, use `npm.cmd` if `npm` is blocked.
-Both tests and lint must pass before submitting changes.
-
 ## Conventions
 
 - Use CommonJS (`require` / `module.exports`), not ES modules.
@@ -21,7 +18,7 @@ Both tests and lint must pass before submitting changes.
 
 ## Architecture
 
-- `server.js` creates and exports the Express app and mounts the routers. Keep the `require.main === module` guard so importing the app does not start the server.
+- `server.js` is the API entry point. Running it directly starts the API server. It creates and exports the Express app and mounts the routers. Keep the `require.main === module` guard so importing the app does not start the server.
 - `routes/` contains one router file per resource.
 - `db/store.js` handles all data access. Routes must call its functions rather than manipulate stored data directly.
 - `tests/users.test.js` tests the API. Tests must account for the shared in-memory store and must not depend on execution order.
